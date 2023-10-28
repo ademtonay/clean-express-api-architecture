@@ -22,4 +22,11 @@ export default {
 			timezone: '+02:00',
 		},
 	},
+	rabbitMQ: {
+		host: '127.0.0.1',
+		port: 5672,
+		username: 'service_user',
+		password: '123456',
+		hearthbeat: 10,
+	},
 }
