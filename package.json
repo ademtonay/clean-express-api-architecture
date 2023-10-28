@@ -10,8 +10,15 @@
 	"author": "Adem TONAY",
 	"license": "MIT",
 	"devDependencies": {
+		"@types/config": "^3.3.2",
 		"@typescript-eslint/eslint-plugin": "^6.9.0",
 		"@typescript-eslint/parser": "^6.9.0",
 		"eslint": "^8.52.0"
+	},
+	"dependencies": {
+		"config": "^3.3.9",
+		"cross-env": "^7.0.3",
+		"pino": "^8.16.1",
+		"pino-pretty": "^10.2.3"
 	}
 }
