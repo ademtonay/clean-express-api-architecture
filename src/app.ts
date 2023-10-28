@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import PrettyLogger from './utils/PrettyLogger'
 import Postgres from './databases/Postgres'
+import RabbitMQ from './libs/rabbitMQ'
 
 // global middlewares setup
 const globalMiddlewares: RequestHandler[] = [
@@ -25,6 +26,9 @@ async function initializeServer() {
 	try {
 		// initializing database
 		await server.initializeDatabase(Postgres)
+
+		// initializing RabbitMQ
+		await server.initializeRabbitMQ(RabbitMQ)
 
 		// initializing controllers and middlewares
 		server.initializeControllers(controllers)
