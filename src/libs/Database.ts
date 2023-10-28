@@ -9,7 +9,9 @@ export type DatabaseOptions = Options & {
 
 const { env } = config.get<{ env: string }>('server')
 
-export default class Database extends Sequelize {
+export default abstract class Database extends Sequelize {
+	public abstract readonly initializedDatabase: string
+
 	/**
 	 * Constructor for the Database class.
 	 * @param {DatabaseOptions} options - The options for configuring the database connection.
