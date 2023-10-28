@@ -8,6 +8,7 @@ import path from 'path'
 import config from 'config'
 import PrettyLogger from './utils/PrettyLogger'
 import Database from './libs/Database'
+import { RabbitMQ } from './libs/rabbitMQ'
 
 export default class Server {
 	private readonly app: Application = express()
@@ -43,6 +44,11 @@ export default class Server {
 		PrettyLogger.info(
 			`${db.initializedDatabase} Database initialized successfully.`,
 		)
+	}
+
+	public async initializeRabbitMQ(amqp: RabbitMQ): Promise<void> {
+		await amqp.initialize()
+		PrettyLogger.info('RabbitMQ initialized successfully.')
 	}
 
 	public start(): void {
