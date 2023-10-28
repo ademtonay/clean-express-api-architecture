@@ -6,6 +6,7 @@ import { json, urlencoded } from 'body-parser'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import PrettyLogger from './utils/PrettyLogger'
+import Postgres from './databases/Postgres'
 
 // global middlewares setup
 const globalMiddlewares: RequestHandler[] = [
@@ -22,6 +23,9 @@ const server = new Server()
 
 async function initializeServer() {
 	try {
+		// initializing database
+		await server.initializeDatabase(Postgres)
+
 		// initializing controllers and middlewares
 		server.initializeControllers(controllers)
 		server.initializeGlobalMiddlewares(globalMiddlewares)
