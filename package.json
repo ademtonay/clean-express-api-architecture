@@ -1,0 +1,17 @@
+{
+	"name": "clean-express-typescript-api-architecture",
+	"version": "1.0.0",
+	"description": "Clean class based express api architecture powered by typescript.",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Adem TONAY",
+	"license": "MIT",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.9.0",
+		"@typescript-eslint/parser": "^6.9.0",
+		"eslint": "^8.52.0"
+	}
+}
