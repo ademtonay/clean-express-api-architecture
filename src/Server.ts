@@ -7,6 +7,7 @@ import Controller from './typings/Controller'
 import path from 'path'
 import config from 'config'
 import PrettyLogger from './utils/PrettyLogger'
+import Database from './libs/Database'
 
 export default class Server {
 	private readonly app: Application = express()
@@ -35,6 +36,13 @@ export default class Server {
 			this.app.use(controller.path, controller.setRoutes().bind(controller)),
 		)
 		PrettyLogger.info('Controllers initialized successfully.')
+	}
+
+	public async initializeDatabase(db: Database): Promise<void> {
+		await db.connect()
+		PrettyLogger.info(
+			`${db.initializedDatabase} Database initialized successfully.`,
+		)
 	}
 
 	public start(): void {
