@@ -37,6 +37,7 @@
 		"pino": "^8.16.1",
 		"pino-pretty": "^10.2.3",
 		"sequelize": "^6.33.0",
+		"sharp": "^0.32.6",
 		"ts-node-dev": "^2.0.0"
 	}
 }
