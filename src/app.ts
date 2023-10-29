@@ -8,6 +8,7 @@ import cors from 'cors'
 import PrettyLogger from './utils/PrettyLogger'
 import Postgres from './databases/Postgres'
 import RabbitMQ from './libs/rabbitMQ'
+import ExampleController from './controllers/ExampleController'
 
 // global middlewares setup
 const globalMiddlewares: RequestHandler[] = [
@@ -18,7 +19,7 @@ const globalMiddlewares: RequestHandler[] = [
 ]
 
 // Controllers setup (this list will be populated as we add controllers)
-const controllers: Controller[] = []
+const controllers: Controller[] = [new ExampleController()]
 
 const server = new Server()
 
