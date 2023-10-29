@@ -1,7 +1,7 @@
 import sharp, { AvailableFormatInfo, FormatEnum } from 'sharp'
 import path from 'path'
-import fs from 'fs'
 import Http400Error from '../errors/Http400Error'
+import ensureFolderExists from '../utils/ensureFolderExist'
 
 export interface ResizeOptions {
 	fileName: string
@@ -13,17 +13,6 @@ export interface ResizeOptions {
 }
 
 export default class ImageProcessor {
-	private static ensureFolderExists(folder: string): string {
-		const rootDir = path.dirname(require.main?.filename ?? '')
-		const folderPath = path.join(rootDir, folder)
-
-		if (!fs.existsSync(folderPath)) {
-			fs.mkdirSync(folderPath, { recursive: true })
-		}
-
-		return folderPath
-	}
-
 	private static validateMimetype(
 		mimetype: string,
 		allowedMimetypes?: string[],
@@ -49,7 +38,7 @@ export default class ImageProcessor {
 
 		try {
 			const outputPath = path.join(
-				this.ensureFolderExists(options.path),
+				ensureFolderExists(options.path),
 				`_${options.fileName}.${options.format}`,
 			)
 
