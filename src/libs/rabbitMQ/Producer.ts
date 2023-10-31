@@ -3,18 +3,19 @@ import PrettyLogger from '../../utils/PrettyLogger'
 import { ExchangeType } from '.'
 
 export default class Producer {
-	constructor(private readonly channel: Channel) {}
+	constructor(
+		private readonly channel: Channel,
+		private readonly exchangeName: string,
+		private readonly type: ExchangeType = 'direct',
+	) {}
 
-	public async publishMessage(
-		exchangeName: string,
-		routingKey: string,
-		message: any,
-		type: ExchangeType = 'direct',
-	) {
-		await this.channel.assertExchange(exchangeName, type)
+	public async assert(): Promise<void> {
+		await this.channel.assertExchange(this.exchangeName, this.type)
+	}
 
+	public async publishMessage(routingKey: string, message: any) {
 		const successfull = this.channel.publish(
-			exchangeName,
+			this.exchangeName,
 			routingKey,
 			Buffer.from(JSON.stringify(message)),
 		)
