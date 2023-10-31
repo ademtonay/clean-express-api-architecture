@@ -32,10 +32,13 @@ export class RabbitMQ {
 		}
 	}
 
-	public async createProducer(): Promise<Producer> {
+	public async createProducer(
+		exchangeName: string,
+		type: ExchangeType = 'direct',
+	): Promise<Producer> {
 		const channel = await this.connection.createChannel()
 
-		return new Producer(channel)
+		return new Producer(channel, exchangeName, type)
 	}
 
 	public async createConsumer(): Promise<Consumer> {
