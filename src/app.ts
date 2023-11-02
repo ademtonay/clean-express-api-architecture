@@ -10,6 +10,7 @@ import Postgres from './databases/Postgres'
 import RabbitMQ from './libs/rabbitMQ'
 import ExampleController from './controllers/ExampleController'
 import ErrorMiddleware from './middlewares/ErrorMiddleware'
+import helmet from 'helmet'
 
 // global middlewares setup
 const globalMiddlewares: RequestHandler[] = [
@@ -17,6 +18,7 @@ const globalMiddlewares: RequestHandler[] = [
 	urlencoded({ extended: false }),
 	cookieParser(),
 	cors(),
+	helmet(),
 ]
 
 // Controllers setup (this list will be populated as we add controllers)
