@@ -9,6 +9,7 @@ import PrettyLogger from './utils/PrettyLogger'
 import Postgres from './databases/Postgres'
 import RabbitMQ from './libs/rabbitMQ'
 import ExampleController from './controllers/ExampleController'
+import ErrorMiddleware from './middlewares/ErrorMiddleware'
 
 // global middlewares setup
 const globalMiddlewares: RequestHandler[] = [
@@ -32,14 +33,17 @@ async function initializeServer() {
 		await server.initializeRabbitMQ(RabbitMQ)
 
 		// initializing controllers and middlewares
-		server.initializeControllers(controllers)
 		server.initializeGlobalMiddlewares(globalMiddlewares)
+		server.initializeControllers(controllers)
 
 		// setting up static folders if configured
 		if (config.has('server.staticFiles')) {
 			const { staticFiles } = config.get<{ staticFiles: string[] }>('server')
 			server.initializeStaticFolders(staticFiles)
 		}
+
+		// initializing custom error handler
+		server.initializeCustomErrorHandler(ErrorMiddleware.globalErrorHandler)
 
 		// start the server
 		server.start()
