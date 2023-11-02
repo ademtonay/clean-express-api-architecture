@@ -38,6 +38,9 @@ dependencies:
   jest:
     specifier: ^29.7.0
     version: 29.7.0(@types/node@20.8.9)
+  moment:
+    specifier: ^2.29.4
+    version: 2.29.4
   multer:
     specifier: 1.4.5-lts.1
     version: 1.4.5-lts.1
