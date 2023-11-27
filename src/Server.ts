@@ -25,6 +25,14 @@ export default class Server {
 		PrettyLogger.info('The custom error handler initialized successfully.')
 	}
 
+	public unCaughtErrorHandler(): void {
+		process.on('uncaughtException', (err) => {
+			PrettyLogger.error(err)
+
+			process.exit(1)
+		})
+	}
+
 	public initializeStaticFolders(folders: string[]): void {
 		folders.forEach((folder) =>
 			this.app.use(express.static(path.join(__dirname, folder))),
