@@ -28,6 +28,8 @@ const server = new Server()
 
 async function initializeServer() {
 	try {
+		server.unCaughtErrorHandler()
+
 		// initializing database
 		await server.initializeDatabase(Postgres)
 
